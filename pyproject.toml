@@ -1,0 +1,16 @@
+[project]
+name = "customer-qa-assistant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "faiss-cpu>=1.13.2",
+    "fastapi>=0.135.1",
+    "ipython>=9.11.0",
+    "langchain>=1.2.12",
+    "langchain-chroma>=1.1.0",
+    "langchain-core>=1.2.19",
+    "langchain-openai>=1.1.11",
+    "pandas>=3.0.1",
+]
