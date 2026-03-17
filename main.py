@@ -167,7 +167,36 @@ def retrieve_context(state:AgentState):
     print("fetched context")
     return {"context": context}
 
-#
+#------------------------------------------------------------------
+#  LOGGER 
+# -------------------------------------------------------------------
+import csv
+import os
+from datetime import datetime
+
+LOG_FILE = "logs/customer_queries.csv"
+
+def init_logger():
+    """Create CSV file with headers if not exists"""
+    os.makedirs("logs", exist_ok=True)
+
+    if not os.path.exists(LOG_FILE):
+        with open(LOG_FILE, mode="w", newline="", encoding="utf-8") as file:
+            writer = csv.writer(file)
+            writer.writerow(["timestamp", "session_id", "query", "response"])
+
+
+def log_query(session_id: str, query: str, response: str):
+    """Append log to CSV"""
+    with open(LOG_FILE, mode="a", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
+        writer.writerow([
+            datetime.now().isoformat(),
+            session_id,
+            query,
+            response
+        ])
+
 # -------------------------------------------------------------------
 #  STATE COMPILATION
 # ----------------------------------------------------------------
@@ -197,10 +226,19 @@ def main():
         if inpt == ":":
             break
         response = app.invoke(
-            {"prompt": inpt, "context": "", "query": inpt, "messages": []},
-            config=config
+        {"prompt": inpt, "context": "", "query": inpt, "messages": []},
+        config=config
         )
-        print("Agent:", response["messages"][-1].content)
+
+        agent_reply = response["messages"][-1].content
+
+        print("Agent:", agent_reply)
+        init_logger()
+        log_query(
+            session_id=config["configurable"]["thread_id"],
+            query=inpt,
+            response=agent_reply
+        )
 
 
 

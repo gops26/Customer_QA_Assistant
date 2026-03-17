@@ -1,0 +1,13 @@
+timestamp,session_id,query,response
+2026-03-17T12:10:16.075660,session-1,hi,Hello! How can I assist you today?
+2026-03-17T12:10:43.934864,session-1,i am reshma,Hello Reshma! How can I assist you today?
+2026-03-17T12:11:03.394268,session-1,what is my bank details,"Sure, Vikram Joshi. Your bank details are as follows:
+- Account Number: ACC8069726553
+- Account Type: Fixed Deposit
+- Account Open Date: 2024-09-04
+- Current Balance: INR 346331.86
+- Account Status: Dormant
+- Occupation: Engineer
+- Annual Income: INR 256079.64
+
+Is there anything else you would like to know or do?"
